@@ -82,7 +82,7 @@ def User(_format, u):
         logme.debug(__name__+':User:notFormat')
         output = f"{u.id} | {u.name} | @{u.username} | Private: "
         output += f"{u.is_private} | Verified: {u.is_verified} |"
-        output += f" Bio: {u.bio} | Location:  | Url: "
+        output += f" Bio: {u.bio} | Location: {u.location} | Url: "
         output += f"{u.url} | Joined: {u.join_date} {u.join_time} "
         output += f"| Tweets: {u.tweets} | Following: {u.following}"
         output += f" | Followers: {u.followers} | Likes: {u.likes} "
