@@ -24,11 +24,28 @@ def User(ur):
         raise KeyError(msg)
     _usr = user()
     _usr.id = ur['data']['user']['rest_id']
-    _usr.name = ur['data']['user']['legacy']['name']
-    _usr.username = ur['data']['user']['legacy']['screen_name']
-    _usr.bio = ur['data']['user']['legacy']['description']
-    _usr.url = ""
-    # parsing date to user-friendly format
+    try:
+        _usr.name = ur['data']['user']['legacy']['name']
+    except:
+        _usr.name = ''
+    try:
+        _usr.username = ur['data']['user']['legacy']['screen_name']
+    except:
+        _usr.username = ''
+    try:
+        _usr.bio = ur['data']['user']['legacy']['description']
+    except:
+        _usr.bio = ''
+    try:
+        _usr.location = ur['data']['user']['legacy']['location']
+    except:
+        _usr.location = ''
+    try: 
+        _usr.url = ur['data']['user']['legacy']['url']
+    except:
+        _usr.url = ''
+
+     # parsing date to user-friendly format
     _dt = ur['data']['user']['legacy']['created_at']
     _dt = datetime.datetime.strptime(_dt, '%a %b %d %H:%M:%S %z %Y')
     # date is of the format year,
@@ -49,3 +66,6 @@ def User(ur):
     # TODO : future implementation
     # legacy_extended_profile is also available in some cases which can be used to get DOB of user
     return _usr
+
+
+    
